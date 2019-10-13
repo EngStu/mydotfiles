@@ -30,6 +30,8 @@ let NERDTreeQuitOnOpen=1
 map  <Leader>n  :NERDTreeFind<CR>
 map <F2> :NERDTreeToggle<CR>
 
+Plug 'tpope/vim-surround'
+
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
