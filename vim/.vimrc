@@ -13,11 +13,38 @@ Plug 'MarcWeber/vim-addon-mw-utils' " Snipmate >>> https://github.com/garbas/vim
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim' " fuzzy search
+Plug 'sheerun/vim-polyglot'
+
 
 call plug#end()
 
 """"""""""
-" Options
+" Settings 
+syntax on
+colorscheme onedark
+
+" Font settings
+set guifont=Monaco:h13
+set linespace=2
+
+set number relativenumber " display line numbers
+
+" set cursorcolumn " display vertical cursor line
+" set cursorline " display horizontal cursor line
+
+" More natural split direction
+set splitright
+
+" Disable scrolls
+set guioptions=
+
+" Needed by nerdcommenter
+filetype plugin on
+
 " emmmet
 let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
@@ -45,3 +72,13 @@ map <F2> :NERDTreeToggle<CR>
 " Key bindings
 " autocmd VimEnter * PlugInstall
 map <F3> :PlugInstall<CR> 
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" Fuzzy search (FZF)
+" macmenu File.Print key=<nop>
+map <Leader>p :FZF<CR>
+map <A-p> :FZF<CR>
+map <D-p> :FZF<CR>
+
